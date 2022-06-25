@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { Button } from "./components/Button";
 
-function App() {
+export default function App() {
+  const [count, setCount] = React.useState(0);
+  const [theme, setTheme] = React.useState("dark"); 
+
+  const changeCount = (val) => {
+    setCount(count + val);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Count : {count}</h1>
+      <Button onClick={() => changeCount(1)} theme={theme}>
+        INCREMENT
+      </Button>
+      <Button onClick={() => changeCount(-1)} theme={theme}>
+        DECREMENT
+      </Button>
+      <br />
+      <br />
+      <br />
+      <Button
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        theme={theme}
+      >
+        CHANGE THEME
+      </Button>
     </div>
   );
 }
-
-export default App;
